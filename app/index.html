@@ -85,6 +85,8 @@
                         <li ng-class="{active: location.path() == '/home'}"><a href="#/home">Home</a></li>
                         <li ng-class="{active: location.path() == '/map'}"><a href="#/map">Map</a></li>
                         <li ng-class="{active: location.path() == '/contact'}"><a href="#contact">Contact</a></li>
+                        <li style="padding-top:7px; padding-left:10px;"><div id="plusone-div"></div></li>
+                        <li  style="padding-top:10px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://evening-ocean-3796.herokuapp.com/app/index.html" data-text="Blast Mapper">Tweet</a></li>
 
                     </ul>
 
@@ -98,6 +100,8 @@
                         <li ng-show="location.path() == '/map'">
                             <a  class="mapTool" ng-click="setAddMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.ADDMARKER'}">Activate</a>
                         </li>
+
+
 
                         <!--<li ng-show="location.path() == '/map'">
                            <a>{{data.selectedNuke}}</a>
@@ -139,6 +143,18 @@
 <script src="js/util.js"></script>
 <script src="js/nuclear.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+    {"parsetags": "explicit"}
+</script>
+
+<script type="text/javascript">
+    (function() {
+        gapi.plusone.render("plusone-div");
+    })();
+</script>
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
 

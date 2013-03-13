@@ -85,6 +85,11 @@ function HomeCtrl($scope){
     $scope.test = "testdata";
 }
 
+function ContactCtrl($scope){
+
+
+}
+
 function MapCtrl($scope){
     angular.extend($scope, {
 
