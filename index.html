@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Blast Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="thermonuclear war">
+    <meta name="author" content="jmuir">
+
+
+    <!-- Le google font -->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <!-- Le styles -->
+    <link href="./app/theme/css/bootstrap.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+        }
+    </style>
+
+
+    <link href="./app/theme/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="./app/theme/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+</head>
+
+<body ng-app="myApp">
+
+
+
+
+<!--<img src="./theme/img/mushroom-cloud.jpg" class="bg">-->
+
+<div id="page-wrap">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavigationCtrl">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Blast Map</a>
+                <div class="nav-collapse collapse">
+
+
+                    <form class="navbar-form pull-right" ng-show="location.path() == '/map'">
+                        <input class="span2" type="text" placeholder="Location" ng-model="searchText">
+                        <button type="submit" class="btn" ng-click="searchLocation()">Search</button>
+                    </form>
+
+                    <form style="margin-right:20px;" class="navbar-form pull-right" ng-show="location.path() == '/map'">
+                        <select ng-model="data.selectedNuke">
+                            <option ng-selected="nuke.yield == data.selectedNuke" ng-repeat="nuke in data.nukes | orderBy: 'yield'" value="{{nuke.yield}}">{{nuke.name + " : " + nuke.yield + " kT"}}</option>
+                        </select>
+                    </form>
+
+
+                    <ul class="nav">
+                        <li ng-class="{active: location.path() == '/home'}"><a href="#/home">Home</a></li>
+                        <li ng-class="{active: location.path() == '/map'}"><a href="#/map">Map</a></li>
+                        <li ng-class="{active: location.path() == '/contact'}"><a href="#contact">Contact</a></li>
+                        <li style="padding-top:7px; padding-left:10px;"><div id="plusone-div"></div></li>
+                        <li  style="padding-top:10px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://blastmapper.com" data-text="Blast Mapper">Tweet</a></li>
+
+                    </ul>
+
+                    <ul class="nav pull-right">
+
+
+                        <li ng-show="location.path() == '/map'">
+                            <a  class="mapTool" ng-click="setClearMap($event)">Clear</a>
+                        </li>
+
+                        <li ng-show="location.path() == '/map'">
+                            <a  class="mapTool" ng-click="setAddMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.ADDMARKER'}">Activate</a>
+                        </li>
+
+
+
+                        <!--<li ng-show="location.path() == '/map'">
+                           <a>{{data.selectedNuke}}</a>
+                        </li>
+                        <li ng-show="location.path() == '/map'">
+                            <a  ng-click="setRemoveMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.REMOVEMARKER'}">Remove Marker</a>
+                        </li>-->
+
+
+                    </ul>
+
+
+
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <!--<div style="height:100px; width:100%; background-color:#AAAAAA;" ng-controller="NukeSelectionCtrl">
+            <h1>{{dialogVisible}}</h1>
+        </div>
+        <div>{{data.nukes  | json}}</div>-->
+    </div>
+
+    <div class="container-fluid">
+        <div ng-view></div>
+    </div><!--/.fluid-container-->
+
+</div>
+
+<!-- Le javascript
+================================================== -->
+
+<script src="./app/lib/angular-google-maps/angular-google-maps.js"></script>
+<script src="./app/lib/angular/angular.js"></script>
+<script src="./app/js/app.js"></script>
+<script src="./app/js/services.js"></script>
+<script src="./app/js/controllers.js"></script>
+<script src="./app/js/filters.js"></script>
+<script src="./app/js/directives.js"></script>
+<script src="./app/js/util.js"></script>
+<script src="./app/js/nuclear.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+    {"parsetags": "explicit"}
+</script>
+
+<script type="text/javascript">
+    (function() {
+        gapi.plusone.render("plusone-div");
+    })();
+</script>
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
