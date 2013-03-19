@@ -23,7 +23,7 @@ app.factory('nukeService', function($rootScope, $http) {
 
     //Gets the list of nuclear weapons
     nukeService.getNukes = function() {
-        $http.get('./app/nukes/nukes.json')
+        $http.get('nukes/nukes.json')
             .success(function(data) {
                 nukeService.data.nukes = data;
                 //alert(status + " | good");
