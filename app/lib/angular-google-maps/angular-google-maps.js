@@ -307,20 +307,191 @@
 
 
 
+            //-----------------------------
+            //Add MY polygon to map
+            //-----------------------------
+            this.addMyPolygon = function (path) {
 
-            //Add polygon to map
-            this.addPolygon = function (polygon) {
-                _polygons.push(polygon);
-                polygon.setMap(_instance);
-                return polygon;
+
+debugger;
+
+                switch(path.id){
+                    case 0:
+
+                        var polygon = new google.maps.Polygon({
+                            paths: path.paths,
+                            strokeColor: "#ff9933",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#ff9933",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 1:
+                        var polygon = new google.maps.Polygon({
+                            paths: path.paths,
+                            strokeColor: "#333333",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#333333",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 2:
+                        var polygon = new google.maps.Polygon({
+                            paths: path.paths,
+                            strokeColor: "#660066",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#660066",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 3:
+
+                        var polygon = new google.maps.Polygon({
+                            paths: path.paths,
+                            strokeColor: "#333333",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#333333",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+                }
+
+
+
             };
 
-            //Clear polygons from the map
-            this.clearPolygons = function(){
+            //-----------------------------
+            //Clear MY polygons from the map
+            //-----------------------------
+            this.clearMyPolygons = function(){
                 while(_polygons[0]){
                     _polygons.pop().setMap(null);
                 }
             }
+
+
+
+
+            //-----------------------------
+            //Add OTHER polygon to map
+            //-----------------------------
+            this.addOtherPolygon = function (blastPath) {
+
+                var coords = [ ];
+                angular.forEach(blastPath.paths, function(p, i){
+                    //coords.push( new google.maps.LatLngBounds(p.kb, p.lb));
+                    var lat = p.kb;
+                    var lng = p.lb;
+                    //(toType(lat));
+                    var coord = new google.maps.LatLng(lat, lng);
+                    coords.push(coord);
+                });
+
+
+
+
+                switch(blastPath.id){
+                    case 0:
+
+                        var polygon = new google.maps.Polygon({
+                            paths: coords,
+                            strokeColor: "#6792AB",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#6792AB",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 1:
+                        var polygon = new google.maps.Polygon({
+                            paths: coords,
+                            strokeColor: "#73A2BD",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#73A2BD",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 2:
+                        var polygon = new google.maps.Polygon({
+                            paths: coords,
+                            strokeColor: "#86B4CF",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#86B4CF",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+
+                    case 3:
+
+                        var polygon = new google.maps.Polygon({
+                            paths: coords,
+                            strokeColor: "#9FC2D6",
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            fillColor: "#9FC2D6",
+                            fillOpacity: 0.38
+
+                        });
+                        //polygons.push(polygon);
+                        polygon.setMap(_instance);
+                        return polygon;
+                        break;
+                }
+
+
+
+            };
+
+            //-----------------------------
+            //Clear OTHER polygons from the map
+            //-----------------------------
+            this.clearOtherPolygons = function(){
+                while(_polygons[0]){
+                    _polygons.pop().setMap(null);
+                }
+            }
+
+
+
 
         }
 

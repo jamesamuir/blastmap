@@ -34,9 +34,9 @@ function initSocket(server){
         });
 
 
-        socket.on('addblast', function(overlay){
-            console.log('BLAST received: ', overlay);
-            socket.broadcast.emit('blastadded', overlay);
+        socket.on('addblast', function(blastPaths){
+            console.log('BLAST received: ', '');
+            socket.broadcast.emit('blastadded', blastPaths);
         });
 
 

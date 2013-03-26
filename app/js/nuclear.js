@@ -90,7 +90,7 @@ var GetBlastOverlays = function(yield, lat, lng){
 
 
 
-var GetBlastPolygons = function(yield, lat, lng){
+var GetBlastPaths = function(yield, lat, lng){
     var vX = 0, vY = 0;
     var step = 24;		// steps in a circle
     var polyOptions = {geodesic:true};
@@ -100,7 +100,7 @@ var GetBlastPolygons = function(yield, lat, lng){
     var arrOne = new Array();
     var arrTwo = new Array();
     var arrThree = new Array();
-    var polygons = [];
+    var polygons = [ ];
 
 
 
@@ -149,46 +149,10 @@ var GetBlastPolygons = function(yield, lat, lng){
 
 
 
-    var poly0 = new google.maps.Polygon({
-        paths: arrZero,
-        strokeColor: "#ff9933",
-        strokeOpacity: 0.5,
-        strokeWeight: 2,
-        fillColor: "#ff9933",
-        fillOpacity: 0.38
-
-    });
-
-    var poly1 = new google.maps.Polygon({
-        paths: arrOne,
-        strokeColor: "#cc6666",
-        strokeOpacity: 0.5,
-        strokeWeight: 2,
-        fillColor: "#cc6666",
-        fillOpacity: 0.38
-
-    });
-
-    var poly2 = new google.maps.Polygon({
-        paths: arrTwo,
-        strokeColor: "#660066",
-        strokeOpacity: 0.5,
-        strokeWeight: 2,
-        fillColor: "#660066",
-        fillOpacity: 0.38
-
-    });
-
-    var poly3 = new google.maps.Polygon({
-        paths: arrThree,
-        strokeColor: "#333333",
-        strokeOpacity: 0.5,
-        strokeWeight: 2,
-        fillColor: "#333333",
-        fillOpacity: 0.38
-
-    });
-
+    var poly0 = ({ id: 0, paths: arrZero });
+    var poly1 = ({ id: 1, paths: arrOne });
+    var poly2 = ({ id: 2, paths: arrTwo });
+    var poly3 = ({ id: 3, paths: arrThree });
 
     polygons.push(poly0);
     polygons.push(poly1);
