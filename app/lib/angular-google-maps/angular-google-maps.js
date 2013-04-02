@@ -310,16 +310,31 @@
             //-----------------------------
             //Add MY polygon to map
             //-----------------------------
-            this.addMyPolygon = function (path) {
+            this.addMyPolygon = function (blastPath) {
 
 
-debugger;
+                var coords = [ ];
+                angular.forEach(blastPath.paths, function(p, i){
 
-                switch(path.id){
+                    //coords.push( new google.maps.LatLngBounds(p.kb, p.lb));
+                    debugger;
+                    var lat = p.lat;
+                    var lng = p.lng;
+
+
+
+                    //(toType(lat));
+                    var coord = new google.maps.LatLng(lat, lng);
+                    coords.push(coord);
+                });
+
+
+
+                switch(blastPath.id){
                     case 0:
 
                         var polygon = new google.maps.Polygon({
-                            paths: path.paths,
+                            paths: coords,
                             strokeColor: "#ff9933",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
@@ -334,7 +349,7 @@ debugger;
 
                     case 1:
                         var polygon = new google.maps.Polygon({
-                            paths: path.paths,
+                            paths: coords,
                             strokeColor: "#333333",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
@@ -349,7 +364,7 @@ debugger;
 
                     case 2:
                         var polygon = new google.maps.Polygon({
-                            paths: path.paths,
+                            paths: coords,
                             strokeColor: "#660066",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
@@ -365,7 +380,7 @@ debugger;
                     case 3:
 
                         var polygon = new google.maps.Polygon({
-                            paths: path.paths,
+                            paths: coords,
                             strokeColor: "#333333",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
@@ -402,9 +417,14 @@ debugger;
 
                 var coords = [ ];
                 angular.forEach(blastPath.paths, function(p, i){
+
                     //coords.push( new google.maps.LatLngBounds(p.kb, p.lb));
-                    var lat = p.kb;
-                    var lng = p.lb;
+                    debugger;
+                    var lat = p.lat;
+                    var lng = p.lng;
+
+
+
                     //(toType(lat));
                     var coord = new google.maps.LatLng(lat, lng);
                     coords.push(coord);

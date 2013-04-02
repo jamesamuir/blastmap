@@ -223,7 +223,7 @@ googleMapsModule.directive("googleMap", ["$log", "$timeout", "$filter", "mapTool
 
 
 
-                        scope.markers.push(cm);
+                        //scope.markers.push(cm);
 
                         $timeout(function () {
                             scope.$apply();

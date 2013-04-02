@@ -131,19 +131,19 @@ var GetBlastPaths = function(yield, lat, lng){
 
         vX = cX(lat, zX[0], (i * (360 / step)));
         vY = cY(lng, zY[0], (i * (360 / step)));
-        arrZero[i] = new google.maps.LatLng(vX, vY);
+        arrZero[i] = {"lat": vX, "lng": vY};
 
         //alert("lat: " + vX + " | lng :" + vY);
 
         vX = cX(lat, zX[1], (i * (360 / step)));
         vY = cY(lng, zY[1], (i * (360 / step)));
-        arrOne[i] = new google.maps.LatLng(vX, vY);
+        arrOne[i] = {"lat": vX, "lng": vY};
         vX = cX(lat, zX[2], (i * (360 / step)));
         vY = cY(lng, zY[2], (i * (360 / step)));
-        arrTwo[i] = new google.maps.LatLng(vX, vY);
+        arrTwo[i] = {"lat": vX, "lng": vY};
         vX = cX(lat, zX[3], (i * (360 / step)));
         vY = cY(lng, zY[3], (i * (360 / step)));
-        arrThree[i] = new google.maps.LatLng(vX, vY);
+        arrThree[i] = {"lat": vX, "lng": vY};
     }
 
 

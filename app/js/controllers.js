@@ -16,8 +16,8 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
 //$scope.nukes = s = nukeService.getNuke
     /*$http.get('nukes/nukes.json').success(function(data) {
-        $scope.nukes = data;
-    });*/
+     $scope.nukes = data;
+     });*/
 
 
     $scope.data = nukeService.getNukes();
@@ -31,17 +31,17 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
         mapSearchService.searchLocation($scope.searchText);
 
         /*var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + formatAddressString($scope.searchText) + '&sensor=false';
-        alert(url);
-        $http({method: 'GET', url: url}).
-            success(function(data, status, headers, config) {
-                //alert(status + " | good");
-                //Set address text
-                alert(data.status);
-                $scope.searchResults = data;
-            }).
-            error(function(data, status, headers, config) {
-                alert(status + " | bad");
-            });*/
+         alert(url);
+         $http({method: 'GET', url: url}).
+         success(function(data, status, headers, config) {
+         //alert(status + " | good");
+         //Set address text
+         alert(data.status);
+         $scope.searchResults = data;
+         }).
+         error(function(data, status, headers, config) {
+         alert(status + " | bad");
+         });*/
 
     }
 
@@ -95,12 +95,12 @@ function MapCtrl($scope){
 
         /** the initial center of the map */
         centerProperty: {
-            lat:  27.50,
-            lng: -98.35
+            lat:  37.50,
+            lng: -96.45
         },
 
         /** the initial zoom level of the map */
-        zoomProperty:4,
+        zoomProperty:5,
 
         /** list of markers to put in the map */
         markersProperty: [ ],
