@@ -5,8 +5,10 @@ var util = require('util'),
     fs = require('fs'),
     url = require('url'),
     events = require('events'),
-    io = require('socket.io');
-    socket = require('./socket.js');
+    io = require('socket.io'),
+    socket = require('./socket.js'),
+    users = require('./users.js');
+
 
 var DEFAULT_PORT = process.env.PORT || 8000;
 
