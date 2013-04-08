@@ -64,9 +64,9 @@ googleMapsModule.directive("googleMap", ["$log", "$timeout", "$filter", "mapTool
                 //Clear overlays + markers and reset center + zoom
                 $scope.map.clearMarkers();
                 $scope.map.clearMyPolygons();
-                $scope.center.lat = 27.50;
-                $scope.center.lng = -98.35;
-                $scope.zoom = 4;
+                //$scope.center.lat = 27.50;
+                //$scope.center.lng = -98.35;
+                //$scope.zoom = 4;
 
             });
 
@@ -165,7 +165,7 @@ googleMapsModule.directive("googleMap", ["$log", "$timeout", "$filter", "mapTool
             // -----------------------
             socket.on('blastadded', function(blastPaths){
 
-                alert("blastadded recieved");
+                //alert("blastadded recieved");
 
                 angular.forEach(blastPaths, function(p, i){
                     _m.addOtherPolygon(p);

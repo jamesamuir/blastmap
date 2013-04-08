@@ -66,7 +66,8 @@
 
             var _instance = null,
                 _markers = [],  // caches the instances of google.maps.Marker
-                _polygons = [],
+                _myPolygons = [], // caches the instances of google.maps.Polygon
+                _otherPolygons = [], // caches the instances of google.maps.Polygon
                 _handlers = [], // event handlers
                 _windows = [],  // InfoWindow objects
                 o = angular.extend({}, _defaults, opts),
@@ -78,7 +79,8 @@
             this.dragging = false;
             this.selector = o.container;
             this.markers = [];
-            this.polygons = [];
+            this.myPolygons = [];
+            this.otherPolygons = [];
 
 
             this.draw = function () {
@@ -317,11 +319,9 @@
                 angular.forEach(blastPath.paths, function(p, i){
 
                     //coords.push( new google.maps.LatLngBounds(p.kb, p.lb));
-                    debugger;
+
                     var lat = p.lat;
                     var lng = p.lng;
-
-
 
                     //(toType(lat));
                     var coord = new google.maps.LatLng(lat, lng);
@@ -335,14 +335,14 @@
 
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#ff9933",
+                            strokeColor: "#9FC2D6",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#ff9933",
+                            fillColor: "#9FC2D6",
                             fillOpacity: 0.38
 
                         });
-                        //polygons.push(polygon);
+                        _myPolygons.unshift(polygon);
                         polygon.setMap(_instance);
                         return polygon;
                         break;
@@ -350,14 +350,14 @@
                     case 1:
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#333333",
+                            strokeColor: "#86B4CF",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#333333",
+                            fillColor: "#86B4CF",
                             fillOpacity: 0.38
 
                         });
-                        //polygons.push(polygon);
+                        _myPolygons.unshift(polygon);
                         polygon.setMap(_instance);
                         return polygon;
                         break;
@@ -365,14 +365,14 @@
                     case 2:
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#660066",
+                            strokeColor: "#EBB035",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#660066",
+                            fillColor: "#EBB035",
                             fillOpacity: 0.38
 
                         });
-                        //polygons.push(polygon);
+                        _myPolygons.unshift(polygon);
                         polygon.setMap(_instance);
                         return polygon;
                         break;
@@ -381,14 +381,14 @@
 
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#333333",
+                            strokeColor: "#DD1E2F",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#333333",
+                            fillColor: "#DD1E2F",
                             fillOpacity: 0.38
 
                         });
-                        //polygons.push(polygon);
+                        _myPolygons.unshift(polygon);
                         polygon.setMap(_instance);
                         return polygon;
                         break;
@@ -402,8 +402,8 @@
             //Clear MY polygons from the map
             //-----------------------------
             this.clearMyPolygons = function(){
-                while(_polygons[0]){
-                    _polygons.pop().setMap(null);
+                while(_myPolygons[0]){
+                    _myPolygons.pop().setMap(null);
                 }
             }
 
@@ -419,7 +419,7 @@
                 angular.forEach(blastPath.paths, function(p, i){
 
                     //coords.push( new google.maps.LatLngBounds(p.kb, p.lb));
-                    debugger;
+
                     var lat = p.lat;
                     var lng = p.lng;
 
@@ -438,10 +438,10 @@
 
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#6792AB",
+                            strokeColor: "#218559",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#6792AB",
+                            fillColor: "#218559",
                             fillOpacity: 0.38
 
                         });
@@ -453,10 +453,10 @@
                     case 1:
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#73A2BD",
+                            strokeColor: "#06A2CB",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#73A2BD",
+                            fillColor: "#06A2CB",
                             fillOpacity: 0.38
 
                         });
@@ -468,10 +468,10 @@
                     case 2:
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#86B4CF",
+                            strokeColor: "#EBB035",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#86B4CF",
+                            fillColor: "#EBB035",
                             fillOpacity: 0.38
 
                         });
@@ -484,10 +484,10 @@
 
                         var polygon = new google.maps.Polygon({
                             paths: coords,
-                            strokeColor: "#9FC2D6",
+                            strokeColor: "#DD1E2F",
                             strokeOpacity: 0.5,
                             strokeWeight: 2,
-                            fillColor: "#9FC2D6",
+                            fillColor: "#DD1E2F",
                             fillOpacity: 0.38
 
                         });
@@ -505,8 +505,8 @@
             //Clear OTHER polygons from the map
             //-----------------------------
             this.clearOtherPolygons = function(){
-                while(_polygons[0]){
-                    _polygons.pop().setMap(null);
+                while(_otherPolygons[0]){
+                    _otherPolygons.pop().setMap(null);
                 }
             }
 
