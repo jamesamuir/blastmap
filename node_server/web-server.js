@@ -22,7 +22,7 @@ function main(argv) {
 
     //Set up socket.io
     var connection = io.listen(httpserver.getServer());
-    socket.initSocketEvents(connection);
+    socket.initSocketEvents(connection, users);
 
 }
 

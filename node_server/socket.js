@@ -1,8 +1,9 @@
-exports.initSocketEvents = function initSocket(io){
+exports.initSocketEvents = function initSocket(io, users){
 
     io.on('connection', function(socket){
 
-        //var name = userNames.getGuestName();
+        var name = users.getGuestName();
+        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Username is ", name);
 
         socket.emit('server ready', {msg: 'hi'}) ;
 
