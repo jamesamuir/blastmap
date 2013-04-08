@@ -82,9 +82,10 @@
 
 
                     <ul class="nav">
-                        <li ng-class="{active: location.path() == '/home'}"><a href="#/home">Home</a></li>
-                        <li ng-class="{active: location.path() == '/map'}"><a href="#/map">Map</a></li>
-                        <li ng-class="{active: location.path() == '/contact'}"><a href="#contact">Contact</a></li>
+                        <li><a href="#" bs-modal="'partials/about.html'" bs-modal-show="false">About</a></li>
+                        <li><a href="#" bs-modal="'partials/contact.html'" bs-modal-show="false">Contact</a></li>
+                        <!--<li ng-class="{active: location.path() == '/map'}"><a href="#/map">Map</a></li>-->
+
                         <li style="padding-top:7px; padding-left:10px;"><div id="plusone-div"></div></li>
                         <li  style="padding-top:10px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://evening-ocean-3796.herokuapp.com/app/index.html" data-text="Blast Mapper">Tweet</a></li>
 
