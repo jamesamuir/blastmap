@@ -82,7 +82,10 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
 function HomeCtrl($scope){
 
-    $scope.test = "testdata";
+    $scope.modal = {
+        "content": "Hello Modal",
+            "saved": false
+    }
 }
 
 function ContactCtrl($scope){

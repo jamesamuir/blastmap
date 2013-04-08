@@ -96,7 +96,7 @@ var bootstrapModule = angular.module("bootstrap-module", [])
                 };
 
 
-                //alert( scope.$eval(iAttrs.bsModalShow));
+                alert( scope.$eval(iAttrs.bsModalShow));
 
                 $q.when($modal(options)).then(function onSuccess(modal) {
                     iElement.attr('data-target', '#' + modal.attr('id')).attr('data-toggle', 'modal');
