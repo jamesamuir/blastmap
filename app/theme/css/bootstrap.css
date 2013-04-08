@@ -162,7 +162,7 @@ body {
     margin: 0;
     font-family: 'Ubuntu', sans-serif;font-size: 14px;
     line-height: 20px;
-    color: #FFF;
+    color: #000;
     background-color: #252525;
 
 
@@ -656,7 +656,7 @@ h6 small {
 
 h1 {
     font-size: 36px;
-    line-height: 40px;
+
 }
 
 h2 {
