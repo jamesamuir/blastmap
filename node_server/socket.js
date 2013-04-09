@@ -5,11 +5,16 @@ exports.initSocketEvents = function initSocket(io, users){
         var name = users.getGuestName();
         console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Username is ", name);
 
-        socket.emit('server ready', {msg: 'hi'}) ;
+        // send the new user their name and a list of users
+        socket.emit('init', {
+            name: name,
+            users: users.get()
+        });
+
 
 
         socket.on('messsage', function(msg){
-            console.log('Message received: ', msg);
+            //console.log('Message received: ', msg);
             socket.broadcast.emit('message', msg);
         });
 
@@ -17,7 +22,7 @@ exports.initSocketEvents = function initSocket(io, users){
 
 
         socket.on('addblast', function(blastPaths){
-            console.log('BLAST received: ', '');
+            //console.log('BLAST received: ', '');
             socket.broadcast.emit('blastadded', blastPaths);
         });
 
