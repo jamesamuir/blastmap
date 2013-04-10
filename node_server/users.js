@@ -1,31 +1,45 @@
 
 var userNames = [ ];
 
-exports.getGuestName = function(){
 
-    console.log('getGuestName: ', name);
+
+
+
+
+
+//node.js requires exports
+exports.getGuestName = function(clientid){
+
+
 
     var name, nextUserId = 1;
     do{
-        name = 'Guest ' + nextUserId;
+        name = 'guest' + nextUserId;
         console.log('getGuestName: ', name);
         nextUserId += 1;
-    }while(!claim(name));
+    }while(!claim(nextUserId, name, clientid));
 
     return name;
 }
 
 
 
-var claim = function (name){
+var claim = function (count, name, clientid){
+
+
 
     //Check if name exists in list
-    if (!name || userNames[name]){
-        console.log('notclaimed: ', name);
+    if (!name || userNames[name] != null){
         return false;
     }else{
+
+        userNames[name] = {name: name, clientid: clientid};
+
+
         console.log('claimed: ', name);
-        userNames[name] = true;
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ userNames[name] = ', userNames[name]);
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ userNames.length = ', userNames.length);
+
         return true;
     }
 }
@@ -34,15 +48,16 @@ var claim = function (name){
     //serialize claimed names as an array
 exports.get = function(){
     var res = [ ];
-    for (user in userNames){
-        res.push(user);
+    for (key in userNames){
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ userNames[name] = ', userNames[key].name);
+        res.push( {name: userNames[key].name} );
     }
     return res;
 }
 
 exports.free = function (name){
     if (userNames[name]){
-        userNames[name].pop();
+        delete userNames[name];
     }
 }
 

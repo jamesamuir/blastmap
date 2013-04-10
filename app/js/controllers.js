@@ -127,9 +127,46 @@ function MapCtrl($scope, socket){
     //------------------------------
     //For the sidebar
     //------------------------------
+    angular.extend($scope, {
+
+        name : "--fetching--",
+        users : [ ],
+        messages : [ ]
+
+    });
+
+
+    //Listen for the user name and list of other users
     socket.on('init', function (data) {
+
+        debugger;
+
         $scope.name = data.name;
+
         $scope.users = data.users;
+    });
+
+    //Listen for a new user to be added
+    socket.on('user:join', function (data) {
+        debugger;
+
+        $scope.users.push(data);
+    });
+
+    //Listen for user to leave
+    socket.on('user:left', function (data) {
+
+        alert("userleft");
+        debugger;
+
+        var i, user;
+        for (i = 0; i < $scope.users.length; i++) {
+            user = $scope.users[i];
+            if (user.name === data.name) {
+                $scope.users.splice(i, 1);
+                break;
+            }
+        }
     });
 
 
