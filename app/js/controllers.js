@@ -139,7 +139,7 @@ function MapCtrl($scope, socket){
     //Listen for the user name and list of other users
     socket.on('init', function (data) {
 
-        debugger;
+        //debugger;
 
         $scope.name = data.name;
 
@@ -148,7 +148,7 @@ function MapCtrl($scope, socket){
 
     //Listen for a new user to be added
     socket.on('user:join', function (data) {
-        debugger;
+        //debugger;
 
         $scope.users.push(data);
     });
@@ -156,8 +156,8 @@ function MapCtrl($scope, socket){
     //Listen for user to leave
     socket.on('user:left', function (data) {
 
-        alert("userleft");
-        debugger;
+        //alert("userleft");
+        //debugger;
 
         var i, user;
         for (i = 0; i < $scope.users.length; i++) {
