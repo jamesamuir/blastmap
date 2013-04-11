@@ -131,7 +131,8 @@ function MapCtrl($scope, socket){
 
         name : "--fetching--",
         users : [ ],
-        messages : [ ]
+        messages : [ ],
+        location : {}
 
     });
 

@@ -7,7 +7,8 @@ var util = require('util'),
     events = require('events'),
     io = require('socket.io'),
     socket = require('./socket.js'),
-    users = require('./users.js');
+    users = require('./users.js'),
+    locations = require('./location.js');
 
 
 var DEFAULT_PORT = process.env.PORT || 8000;
@@ -22,7 +23,7 @@ function main(argv) {
 
     //Set up socket.io
     var connection = io.listen(httpserver.getServer());
-    socket.initSocketEvents(connection, users);
+    socket.initSocketEvents(connection, users, locations);
 
 }
 

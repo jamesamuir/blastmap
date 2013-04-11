@@ -1,4 +1,4 @@
-exports.initSocketEvents = function initSocket(io, users){
+exports.initSocketEvents = function initSocket(io, users, locations){
 
 
     var count = 0;
@@ -13,7 +13,8 @@ exports.initSocketEvents = function initSocket(io, users){
         // send the new user their name and a list of users
         socket.emit('init', {
             name: name,
-            users: users.get()
+            users: users.get(),
+            location: locations.getUserLocation(name)
 
         });
 
