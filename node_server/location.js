@@ -29,5 +29,5 @@ exports.getUserLocation = function(name){
         nextLocationId = 0;
     }
 
-    return name;
+    return location;
 }

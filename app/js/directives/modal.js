@@ -61,7 +61,14 @@ var bootstrapModule = angular.module("bootstrap-module", [])
                         });
 
                         if(options.show) {
-                            $modal.modal('show');
+
+                            if (options.static){
+                                $modal.modal({show: true, backdrop: 'static', keyboard: false});
+                            }else{
+                                $modal.modal('show');
+                            }
+
+
                         }
 
                         return $modal;
@@ -92,7 +99,8 @@ var bootstrapModule = angular.module("bootstrap-module", [])
                     modalClass: iAttrs.modalClass || '',
                     backdrop: iAttrs.backdrop*1 || true,
                     keyboard: iAttrs.keyboard*1 || true,
-                    show: scope.$eval(iAttrs.bsModalShow) || false
+                    show: scope.$eval(iAttrs.bsModalShow) || false,
+                    static: scope.$eval(iAttrs.bsModalStatic) || false
                 };
 
 

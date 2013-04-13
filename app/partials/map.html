@@ -13,17 +13,22 @@
                     <div id="collapseOne" class="accordion-body collapse in">
                         <div class="accordion-inner">
 
-                            <span>
-                                <strong>{{name}}</strong>
-                            </span>
+                            <div>
+                                <i class="icon-user icon-2x"></i> <strong style="padding-left: 10px;">{{name}}</strong>
+                            </div>
+                            <div>
+                                <i class="icon-globe icon-2x"></i><strong style="padding-left: 10px;">{{ location.name }}</strong>
+                            </div>
+                            <br/>
+                            <br/>
 
                             <span>
                                 <label>Currently Playing</label>
-                            <ul>
-                                <li ng-repeat="user in users">{{user.name}}</li>
-
-
-                            </ul>
+                                <div style="border: 1px solid #FFFFFF;">
+                                    <ul>
+                                        <li ng-repeat="user in users">{{user.name}}</li>
+                                    </ul>
+                                </div>
                             </span>
 
                         </div>
@@ -64,9 +69,10 @@
                  style="height: 1000px; width: 100%">
             </div>
         </div>
+
+
     </div>
 </div>
-
 
 
 

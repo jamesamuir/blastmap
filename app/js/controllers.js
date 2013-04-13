@@ -1,6 +1,23 @@
 'use strict';
 
 /* Controllers */
+function HomeCtrl($scope){
+
+
+}
+function ContactCtrl($scope){
+
+
+}
+
+function AuthCtrl($scope, socket){
+
+
+
+
+}
+
+
 
 
 function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchService, nukeService){
@@ -80,18 +97,9 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
 }
 
-function HomeCtrl($scope){
-
-    $scope.modal = {
-        "content": "Hello Modal",
-            "saved": false
-    }
-}
-
-function ContactCtrl($scope){
 
 
-}
+
 
 function MapCtrl($scope, socket){
 
@@ -108,6 +116,9 @@ function MapCtrl($scope, socket){
 
         /** the initial zoom level of the map */
         zoomProperty:5,
+
+        /** list of markers to put in the map */
+
 
         /** list of markers to put in the map */
         markersProperty: [ ],
@@ -145,6 +156,12 @@ function MapCtrl($scope, socket){
         $scope.name = data.name;
 
         $scope.users = data.users;
+
+        $scope.location = data.location;
+
+
+
+
     });
 
     //Listen for a new user to be added
@@ -169,6 +186,9 @@ function MapCtrl($scope, socket){
             }
         }
     });
+
+
+
 
 
 
