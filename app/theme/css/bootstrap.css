@@ -5994,7 +5994,7 @@ input:focus {
 }
 
 /* Set submit button */
-form .btn, form.ng-valid .btn[disabled] {
+form .btn-submit, form.ng-valid .btn[disabled] {
     display: none;
 }
 form.ng-invalid .btn[disabled], form.ng-valid .btn {

@@ -10,9 +10,26 @@ function ContactCtrl($scope){
 
 }
 
-function AuthCtrl($scope, socket){
+function AuthCtrl($scope,  mapSearchService, socket){
 
+    $scope.location = $location;
+    $scope.searchLocation = function(){
+        mapSearchService.searchLocation($scope.searchText);
 
+        /*var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + formatAddressString($scope.searchText) + '&sensor=false';
+         alert(url);
+         $http({method: 'GET', url: url}).
+         success(function(data, status, headers, config) {
+         //alert(status + " | good");
+         //Set address text
+         alert(data.status);
+         $scope.searchResults = data;
+         }).
+         error(function(data, status, headers, config) {
+         alert(status + " | bad");
+         });*/
+
+    }
 
 
 }

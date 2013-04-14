@@ -8,17 +8,28 @@
 <div class="modal-body">
 
 
-    <form  ng-controller="AuthCtrl" class="row form-horizontal" novalidate>
+    <form ng-app="form-example" class="row form-horizontal" novalidate>
         <div class="control-group">
-            <label class="control-label" for="inputName">Name</label>
+            <label class="control-label" for="inputEmail">Email</label>
             <div class="controls">
-                <input type="text" id="inputName" placeholder="Name" ng-model="name" required name-validate>
+                <input type="email" id="inputEmail" placeholder="Email" ng-model="email" required>
                 <div class="input-help">
-                    <h4>Invalid Name</h4>
+                    <h4>Invalid Email</h4>
                 </div>
             </div>
         </div>
 
+
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">Location</label>
+            <div class="controls">
+
+                <input class="span2" type="text" placeholder="Location" ng-model="searchText">
+                <button type="submit" class="btn" ng-click="searchLocation()">Search</button>
+
+
+            </div>
+        </div>
 
 
         <div class="control-group">
@@ -35,10 +46,14 @@
                 </div>
             </div>
         </div>
+
+
+
+
         <div class="control-group">
             <div class="controls">
-                <button type="submit" class="btn">Create Account</button>
-                <button class="btn" disabled>Create Account</button>
+                <button type="submit" class="btn btn-submit">Create Account</button>
+                <button class="btn btn-submit" disabled>Create Account</button>
             </div>
         </div>
     </form>
@@ -50,9 +65,4 @@
 
 
 
-
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn" ng-click="dismiss()">Close</button>
-    <button class="btn btn-primary" ng-click="modal.saved=true;dismiss()">Save changes</button>
 </div>

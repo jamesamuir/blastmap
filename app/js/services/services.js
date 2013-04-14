@@ -80,6 +80,7 @@ app.factory('mapSearchService', function($rootScope, $http) {
     mapSearchService.searchLat = "";
     mapSearchService.searchLng = "";
     mapSearchService.formattedAddress = "";
+    mapSearchService.searchResults = [ ];
 
     //Accessors
     mapSearchService.getSearchLat = function() {
@@ -88,9 +89,44 @@ app.factory('mapSearchService', function($rootScope, $http) {
     mapSearchService.getSearchLng = function() {
         return mapSearchService.searchLng;
     };
-    mapSearchService.getFormattedAddress = function() {
-        return mapSearchService.formattedAddress;
+    mapSearchService.getSearchResults = function() {
+        return mapSearchService.searchResults;
     };
+
+
+    //Search
+    mapSearchService.renderSearchLocationList = function(searchText) {
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode( { 'address': searchText}, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+
+
+                mapSearchService.formattedAddress = results[0].formatted_address;
+
+                //Set location
+                debugger;
+                var location = results[0].geometry.location;
+
+
+
+                mapSearchService.searchLat = location.lat();
+                mapSearchService.searchLng = location.lng();
+
+                //alert(location.lat());
+
+                $rootScope.$broadcast('updateMapCenter');
+
+
+            }
+            else{
+                alert(status + " | bad");
+            }
+        });
+    };
+
 
     //Search
     mapSearchService.searchLocation = function(searchText) {
@@ -115,10 +151,6 @@ app.factory('mapSearchService', function($rootScope, $http) {
                     //alert(location.lat());
 
                     $rootScope.$broadcast('updateMapCenter');
-
-
-
-
 
 
             }
