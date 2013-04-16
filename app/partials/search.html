@@ -1,0 +1,38 @@
+
+
+<!-- Modal (external ./partials/modal.html or inline ng-template) -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Search for a Location</h3>
+</div>
+<div class="modal-body">
+
+
+
+
+
+    <form class="row form-horizontal" novalidate ng-controller="SearchLocationCtrl">
+        <div class="control-group">
+            <label class="control-label" for="inputLocation">Location</label>
+            <div class="controls">
+                <input type="text" id="inputLocation" placeholder="Location" ng-model="form.location" required>
+                <div class="input-help">
+                    <h4>Location is required</h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-submit" ng-click="searchLocation()">Search</button>
+                <button class="btn btn-submit" disabled>Search</button>
+            </div>
+        </div>
+
+        <ul>
+            <li ng-repeat="item in searchResults.items">{{item.address}}</li>
+        </ul>
+
+    </form>
+</div>

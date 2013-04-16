@@ -80,7 +80,14 @@ app.factory('mapSearchService', function($rootScope, $http) {
     mapSearchService.searchLat = "";
     mapSearchService.searchLng = "";
     mapSearchService.formattedAddress = "";
-    mapSearchService.searchResults = [ ];
+
+
+
+    //
+    mapSearchService.searchResults = {};
+    mapSearchService.searchResults.items = {};
+
+
 
     //Accessors
     mapSearchService.getSearchLat = function() {
@@ -89,13 +96,18 @@ app.factory('mapSearchService', function($rootScope, $http) {
     mapSearchService.getSearchLng = function() {
         return mapSearchService.searchLng;
     };
+    mapSearchService.getFormattedAddress = function() {
+        return mapSearchService.formattedAddress;
+    };
     mapSearchService.getSearchResults = function() {
         return mapSearchService.searchResults;
     };
 
 
     //Search
-    mapSearchService.renderSearchLocationList = function(searchText) {
+    mapSearchService.getSearchLocationList = function(searchText) {
+
+        var locations = [];
 
         var geocoder = new google.maps.Geocoder();
 
@@ -104,26 +116,33 @@ app.factory('mapSearchService', function($rootScope, $http) {
             if (status == google.maps.GeocoderStatus.OK) {
 
 
-                mapSearchService.formattedAddress = results[0].formatted_address;
 
-                //Set location
+                angular.forEach(results, function (result, i) {
+
+                    var location = result.geometry.location;
+
+
+
+                    var address = result.formattedAddress = result.formatted_address;
+                    var searchLat = location.lat();
+                    var searchLng = location.lng();
+
+
+
+                    locations.push({ "address": address });
+
+                });
+
+                mapSearchService.searchResults.items = locations;
+
                 debugger;
-                var location = results[0].geometry.location;
-
-
-
-                mapSearchService.searchLat = location.lat();
-                mapSearchService.searchLng = location.lng();
-
-                //alert(location.lat());
-
-                $rootScope.$broadcast('updateMapCenter');
 
 
             }
             else{
                 alert(status + " | bad");
             }
+            debugger;
         });
     };
 
@@ -138,6 +157,8 @@ app.factory('mapSearchService', function($rootScope, $http) {
             if (status == google.maps.GeocoderStatus.OK) {
 
 
+
+                    debugger;
                     mapSearchService.formattedAddress = results[0].formatted_address;
 
                     //Set location

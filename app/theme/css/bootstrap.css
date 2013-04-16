@@ -5876,19 +5876,30 @@ img.bg {
 
 
 
+.btn-location-search{
+    display:block;
+    margin-top:10px;
+}
+
+
+ .ng-disabled{
+    background:#ccc;
+}
+
+
 
 /*********************************************************************/
 /******  Form Validation Override ************************************/
 
 .input-help {
     display: none;
-    position:absolute;
+    /*position:absolute;*/
     z-index: 100;
     top: -6px;
     left: 160px;
     width:200px;
-    padding:10px;
-    background:#fefefe;
+    padding:5px;
+    /*background:#fefefe;*/
     font-size:.875em;
     border-radius:5px;
     box-shadow:0 1px 3px #aaa;

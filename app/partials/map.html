@@ -13,6 +13,58 @@
                     <div id="collapseOne" class="accordion-body collapse in">
                         <div class="accordion-inner">
 
+
+
+
+                            <form novalidate>
+
+                                <div class="control-group">
+                                    <div class="control-label" for="inputName">Name</div>
+                                    <div class="controls">
+                                        <input type="text" id="inputName" placeholder="Name" ng-model="email" required>
+                                        <div class="input-help">
+                                            <h4>Invalid Name</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputLocation">Location</label>
+                                    <div class="controls">
+
+                                        <input type="text" id="inputLocation" placeholder="Location" ng-model="searchText" ng-disabled="true" required>
+                                        <div class="input-help">
+                                            <h4>Invalid Email</h4>
+                                        </div>
+
+                                        <button class="btn btn-location-search" bs-modal="'partials/search.html'" bs-modal-show="false">Search</button>
+
+
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-submit">Create Account</button>
+                                        <button class="btn btn-submit" disabled>Create Account</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+
+
+
                             <div>
                                 <i class="icon-user icon-2x"></i> <strong style="padding-left: 10px;">{{name}}</strong>
                             </div>
