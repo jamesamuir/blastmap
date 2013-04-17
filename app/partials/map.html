@@ -10,8 +10,10 @@
                             Game Options
                         </a>
                     </div>
-                    <div id="collapseOne" class="accordion-body collapse in">
+                    <div id="collapseOne" class="accordion-body collapse in" ng-controller="GameSettingsCtrl">
                         <div class="accordion-inner">
+
+
 
 
 
@@ -30,12 +32,12 @@
 
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputLocation">Location</label>
+                                    <label class="control-label" for="inputLocation">Start Location</label>
                                     <div class="controls">
 
                                         <input type="text" id="inputLocation" placeholder="Location" ng-model="searchText" ng-disabled="true" required>
                                         <div class="input-help">
-                                            <h4>Invalid Email</h4>
+                                            <h4>Start Location Required</h4>
                                         </div>
 
                                         <button class="btn btn-location-search" bs-modal="'partials/search.html'" bs-modal-show="false">Search</button>

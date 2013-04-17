@@ -86,6 +86,7 @@ app.factory('mapSearchService', function($rootScope, $http) {
     //
     mapSearchService.searchResults = {};
     mapSearchService.searchResults.items = {};
+    mapSearchService.searchResults.found = "";
 
 
 
@@ -104,6 +105,7 @@ app.factory('mapSearchService', function($rootScope, $http) {
     };
 
 
+
     //Search
     mapSearchService.getSearchLocationList = function(searchText) {
 
@@ -116,33 +118,37 @@ app.factory('mapSearchService', function($rootScope, $http) {
             if (status == google.maps.GeocoderStatus.OK) {
 
 
-
+                //Loop each result returned from geocode
                 angular.forEach(results, function (result, i) {
 
                     var location = result.geometry.location;
 
-
-
+                    //Get address, lat, and lng
                     var address = result.formattedAddress = result.formatted_address;
-                    var searchLat = location.lat();
-                    var searchLng = location.lng();
+                    var lat = location.lat();
+                    var lng = location.lng();
 
-
-
-                    locations.push({ "address": address });
+                    //Push info to array
+                    locations.push({ "address": address, "lat": lat, "lng": lng });
 
                 });
 
-                mapSearchService.searchResults.items = locations;
 
-                debugger;
-
+                //Set the changes to locaiton
+                $rootScope.$apply( function(){
+                    mapSearchService.searchResults.items = locations;
+                    mapSearchService.searchResults.found = true;
+                });
 
             }
             else{
                 alert(status + " | bad");
+
+                $rootScope.$apply( function(){
+                    mapSearchService.searchResults.found = false;
+                });
             }
-            debugger;
+            //debugger;
         });
     };
 
