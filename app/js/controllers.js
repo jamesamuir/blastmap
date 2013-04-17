@@ -53,8 +53,6 @@ function GameSettingsCtrl($scope, socket, mapSearchService){
             }
         }
     });
-
-
 }
 
 function SearchLocationCtrl($scope, mapSearchService){
@@ -68,7 +66,7 @@ function SearchLocationCtrl($scope, mapSearchService){
     }
 
     $scope.setSelectLocation = function(index){
-        alert($scope.searchResults.items[index].address);
+        $scope.searchResults.items[index];
 
     }
 
