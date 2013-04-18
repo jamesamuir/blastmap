@@ -7,6 +7,11 @@ var userNames = [ ];
 
 
 
+
+
+
+
+
 //node.js requires exports
 exports.getGuestName = function(clientid){
 

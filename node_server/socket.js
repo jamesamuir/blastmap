@@ -10,19 +10,33 @@ exports.initSocketEvents = function initSocket(io, users, locations){
 
         //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ clientid is ", socket.id);
 
-        // send the new user their name and a list of users
-        socket.emit('init', {
-            name: name,
-            users: users.get(),
-            location: locations.getUserLocation(name)
-
-        });
-
 
         //broadcast new user to other clients
         socket.broadcast.emit('user:join', {
             name: name
         });
+
+
+
+        socket.on('startgame', function(user){
+
+            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  :", user.name);
+
+            users.
+
+            //Add user name to all other clients
+            socket.broadcast.emit('user:join', {
+                name: user.name
+            });
+
+            //Get the list of current users for current client
+            socket.emit('init', {
+                users: users.get()
+            });
+
+            1
+        });
+
 
 
         socket.on('messsage', function(msg){

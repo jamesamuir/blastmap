@@ -8,26 +8,56 @@ function GameSettingsCtrl($scope, socket, mapSearchService){
     //------------------------------
     angular.extend($scope, {
 
-        name : "--fetching--",
-        users : [ ],
-        messages : [ ],
-        location : {}
+        name : "",
+        location : {address:"",lat:null, lng:null},
+        gamestarted: false,
+        myturn: false
+        //users : [ ],
+        //messages : [ ],
+
+    });
+
+    $scope.startGame = function(){
+
+
+
+        socket.emit('startgame', {name: $scope.name, location: $scope.location});
+        $scope.gamestarted = true;
+
+    };
+
+
+
+    $scope.$on("location:selected", function(event, item){
+
+        $scope.location.address = item.address;
+        $scope.location.lat = item.lat;
+        $scope.location.lng = item.lng;
 
     });
 
 
 
 
+
+
     //Listen for the user name and list of other users
+    socket.on('socket:gamestarted', function (data) {
+
+        $scope.users = data.users;
+
+    });
+
+
     socket.on('init', function (data) {
 
         //debugger;
 
-        $scope.name = data.name;
+        //$scope.name = data.name;
 
         $scope.users = data.users;
 
-        $scope.location = data.location;
+        //$scope.location = data.location;
 
     });
 
@@ -53,6 +83,7 @@ function GameSettingsCtrl($scope, socket, mapSearchService){
             }
         }
     });
+
 }
 
 function SearchLocationCtrl($scope, mapSearchService){
@@ -66,7 +97,9 @@ function SearchLocationCtrl($scope, mapSearchService){
     }
 
     $scope.setSelectLocation = function(index){
-        $scope.searchResults.items[index];
+
+        $scope.$emit("location:selected", $scope.searchResults.items[index]);
+        $scope.dismiss();
 
     }
 
