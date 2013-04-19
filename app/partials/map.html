@@ -4,7 +4,6 @@
 
 
 
-
             <div class="accordion" id="accordion2">
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -99,10 +98,19 @@
                     <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
 
-                            <div>
+                            <div ng-controller="NavigationCtrl">
 
-                                --{{test}}--
+                                <select ng-model="data.selectedNuke">
+                                    <option ng-selected="nuke.yield == data.selectedNuke" ng-repeat="nuke in data.nukes | orderBy: 'yield'" value="{{nuke.yield}}">{{nuke.name + " : " + nuke.yield + " kT"}}</option>
+                                </select>
+                                <br/>
+                                <a  class="mapTool" ng-click="setAddMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.ADDMARKER'}">Activate</a>
+                                <a  class="mapTool" ng-click="setClearMap($event)">Clear</a>
+                                <br/>
 
+                                <input type="text" placeholder="Find Location" ng-model="searchText">
+                                <br/>
+                                <button type="submit" class="btn" ng-click="searchLocation()">Find Location</button>
 
                             </div>
 

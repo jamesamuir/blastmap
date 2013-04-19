@@ -120,7 +120,7 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
     $scope.searchResults = "";
 
-    $scope.test = "WHARRRGARBBBBL";
+    $scope.sometext = "WHARRRGARBBBBL";
 
 //$scope.nukes = s = nukeService.getNuke
     /*$http.get('nukes/nukes.json').success(function(data) {
