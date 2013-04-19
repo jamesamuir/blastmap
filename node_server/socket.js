@@ -5,36 +5,37 @@ exports.initSocketEvents = function initSocket(io, users, locations){
 
     io.on('connection', function(socket){
 
-        var name = users.getGuestName(socket.id);
+        var name = '';
         count++;
 
         //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ clientid is ", socket.id);
 
+        socket.on('socket:startgame', function(user){
 
-        //broadcast new user to other clients
-        socket.broadcast.emit('user:join', {
-            name: name
-        });
+            //console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  :", user.name);
+
+            if (users.claim(user.name, socket.id)){
+
+                //Add user name to all other clients
+                socket.broadcast.emit('user:join', {
+                    name: user.name
+                });
+
+                //Get the list of current users for current client
+                socket.emit('socket:gamestarted', {
+                    users: users.get()
+                });
+
+            }else{
+                //Validation failed us, the user already exists
+                socket.emit('socket:usernotclaimed', {
+                    claimed: false
+                });
+            }
 
 
 
-        socket.on('startgame', function(user){
 
-            console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  :", user.name);
-
-            users.
-
-            //Add user name to all other clients
-            socket.broadcast.emit('user:join', {
-                name: user.name
-            });
-
-            //Get the list of current users for current client
-            socket.emit('init', {
-                users: users.get()
-            });
-
-            1
         });
 
 

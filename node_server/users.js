@@ -13,25 +13,9 @@ var userNames = [ ];
 
 
 //node.js requires exports
-exports.getGuestName = function(clientid){
 
 
-
-    var name, nextUserId = 1;
-    do{
-        name = 'guest' + nextUserId;
-        console.log('getGuestName: ', name);
-        nextUserId += 1;
-    }while(!claim(nextUserId, name, clientid));
-
-    return name;
-}
-
-
-
-var claim = function (count, name, clientid){
-
-
+exports.claim = function (name, clientid){
 
     //Check if name exists in list
     if (!name || userNames[name] != null){
@@ -39,12 +23,14 @@ var claim = function (count, name, clientid){
     }else{
 
         userNames[name] = {name: name, clientid: clientid};
+        return true;
+    }
+}
 
-
-        console.log('claimed: ', name);
-        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ userNames[name] = ', userNames[name]);
-        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ userNames.length = ', userNames.length);
-
+exports.isAvailable = function(name){
+    if (!name || userNames[name] != null){
+        return false;
+    }else{
         return true;
     }
 }

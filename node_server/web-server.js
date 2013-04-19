@@ -13,6 +13,8 @@ var util = require('util'),
 
 var DEFAULT_PORT = process.env.PORT || 8000;
 
+console.log("PORT IS ", DEFAULT_PORT);
+
 function main(argv) {
     var httpserver = new HttpServer({
         'GET': createServlet(StaticServlet),
@@ -27,30 +29,7 @@ function main(argv) {
 
 }
 
-function initSocket(server){
 
-    io.listen(server).on('connection', function(socket){
-
-
-
-        socket.emit('server ready', {msg: 'hi'}) ;
-        socket.on('messsage', function(msg){
-            console.log('Message received: ', msg);
-            socket.broadcast.emit('message', msg);
-        });
-
-
-        socket.on('addblast', function(blastPaths){
-            console.log('BLAST received: ', '');
-            socket.broadcast.emit('blastadded', blastPaths);
-        });
-
-
-    });
-
-
-
-}
 
 function escapeHtml(value) {
     return value.toString().
@@ -128,26 +107,44 @@ StaticServlet.MimeMap = {
     'svg': 'image/svg+xml'
 };
 
+
+
+
+
 StaticServlet.prototype.handleRequest = function(req, res) {
     var self = this;
     var path = ('./' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
         return String.fromCharCode(parseInt(hex, 16));
     });
+
     var parts = path.split('/');
+
     if (parts[parts.length-1].charAt(0) === '.')
         return self.sendForbidden_(req, res, path);
+
     fs.stat(path, function(err, stat) {
         if (err)
             return self.sendMissing_(req, res, path);
         if (stat.isDirectory())
             return self.sendRedirect_(req, res, './app/index.html');
             //return self.sendDirectory_(req, res, path);
+        else{
+
+            //Check for API call
+            if (path.indexOf('API') > 0){
+                return self.sendAPI_(req, res, path);
+            }else{
+                return self.sendFile_(req, res, path);
+            }
+
+        }
 
 
-
-        return self.sendFile_(req, res, path);
     });
 };
+
+
+
 
 StaticServlet.prototype.sendError_ = function(req, res, error) {
     res.writeHead(500, {
@@ -260,6 +257,29 @@ StaticServlet.prototype.sendDirectory_ = function(req, res, path) {
     });
 };
 
+
+StaticServlet.prototype.sendAPI_ = function(req, res, path) {
+
+    if (!err) {
+
+        //Match path to correct API
+        if (path.indexOf('/API/User/IsNameAvailable' > 0)){
+
+
+            var isAvailable = users.isAvailable(req.params.name);
+            return res.send(isAvailable);
+
+        }else{
+            return console.log('No API found matching ', path);
+        }
+
+        return res.send({result: true});
+    } else {
+        return console.log(err);
+    }
+};
+
+
 StaticServlet.prototype.writeDirectoryIndex_ = function(req, res, path, files) {
     path = path.substring(1);
     res.writeHead(200, {
@@ -286,6 +306,9 @@ StaticServlet.prototype.writeDirectoryIndex_ = function(req, res, path, files) {
     res.write('</ol>');
     res.end();
 };
+
+
+
 
 // Must be last,
 main(process.argv);

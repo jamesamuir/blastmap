@@ -59,7 +59,7 @@
 
 <div id="page-wrap">
 
-    <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavigationCtrl">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -71,18 +71,6 @@
                 <div class="nav-collapse collapse">
 
 
-                    <form class="navbar-form pull-right" ng-show="location.path() == '/map'">
-                        <input class="span2" type="text" placeholder="Location" ng-model="searchText">
-                        <button type="submit" class="btn" ng-click="searchLocation()">Search</button>
-                    </form>
-
-                    <form style="margin-right:20px;" class="navbar-form pull-right" ng-show="location.path() == '/map'">
-                        <select ng-model="data.selectedNuke">
-                            <option ng-selected="nuke.yield == data.selectedNuke" ng-repeat="nuke in data.nukes | orderBy: 'yield'" value="{{nuke.yield}}">{{nuke.name + " : " + nuke.yield + " kT"}}</option>
-                        </select>
-                    </form>
-
-
                     <ul class="nav">
                         <li><a href="#" bs-modal="'partials/about.html'" bs-modal-show="false">About</a></li>
                         <li><a href="#" bs-modal="'partials/contact.html'" bs-modal-show="false">Contact</a></li>
@@ -90,29 +78,6 @@
 
                         <li style="padding-top:7px; padding-left:10px;"><div id="plusone-div"></div></li>
                         <li  style="padding-top:10px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://evening-ocean-3796.herokuapp.com/app/index.html" data-text="Blast Mapper">Tweet</a></li>
-
-                    </ul>
-
-                    <ul class="nav pull-right">
-
-
-                        <li ng-show="location.path() == '/map'">
-                            <a  class="mapTool" ng-click="setClearMap($event)">Clear</a>
-                        </li>
-
-                        <li ng-show="location.path() == '/map'">
-                            <a  class="mapTool" ng-click="setAddMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.ADDMARKER'}">Activate</a>
-                        </li>
-
-
-
-                        <!--<li ng-show="location.path() == '/map'">
-                           <a>{{data.selectedNuke}}</a>
-                        </li>
-                        <li ng-show="location.path() == '/map'">
-                            <a  ng-click="setRemoveMarker($event)" ng-class="{mapToolActive: mapTool == 'mapTool.REMOVEMARKER'}">Remove Marker</a>
-                        </li>-->
-
 
                     </ul>
 
@@ -133,12 +98,7 @@
 
     <div class="container-fluid">
 
-
-
         <div ng-view></div>
-
-
-
 
     </div><!--/.fluid-container-->
 

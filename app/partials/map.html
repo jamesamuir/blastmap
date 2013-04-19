@@ -3,6 +3,8 @@
         <div class="span3">
 
 
+
+
             <div class="accordion" id="accordion2">
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -15,10 +17,7 @@
 
 
 
-
-
-
-                            <form novalidate ng-show="!gamestarted">
+                            <form novalidate ng-show="!gamesettings.gamestarted">
 
                                 <div class="control-group">
                                     <div class="control-label" for="inputName">Name</div>
@@ -48,10 +47,6 @@
                                 </div>
 
 
-
-
-
-
                                 <div class="control-group">
                                     <div class="controls">
                                         <button type="submit" class="btn btn-submit" ng-click="startGame()">Start Game</button>
@@ -64,7 +59,7 @@
 
 
 
-                            <div ng-show="gamestarted">
+                            <div ng-show="gamesettings.gamestarted">
                                 <div>
                                     <i class="icon-user icon-2x"></i> <strong style="padding-left: 10px;">{{name}}</strong>
                                 </div>
@@ -78,9 +73,6 @@
                                 <br/>
                                 <br/>
 
-
-
-
                                 <span>
                                     <label>Currently Playing</label>
                                     <div style="border: 1px solid #FFFFFF;">
@@ -89,11 +81,16 @@
                                         </ul>
                                     </div>
                                 </span>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-group">
+
+
+
+                <div  class="accordion-group" >
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
                             Control Panel
@@ -101,13 +98,19 @@
                     </div>
                     <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
-                            Anim pariatur cliche...
+
+                            <div>
+
+                                --{{test}}--
+
+
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
         </div>
 

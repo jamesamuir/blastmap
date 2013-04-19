@@ -1,33 +1,26 @@
 'use strict';
 
+
+
 /* Controllers */
 function GameSettingsCtrl($scope, socket, mapSearchService){
 
-    //------------------------------
-    //For the sidebar
-    //------------------------------
+
     angular.extend($scope, {
 
         name : "",
         location : {address:"",lat:null, lng:null},
-        gamestarted: false,
-        myturn: false
+        gamesettings : {
+            gamestarted: false,
+            myturn: false
+        }
+
         //users : [ ],
         //messages : [ ],
 
     });
 
-    $scope.startGame = function(){
-
-
-
-        socket.emit('startgame', {name: $scope.name, location: $scope.location});
-        $scope.gamestarted = true;
-
-    };
-
-
-
+    //For location selected
     $scope.$on("location:selected", function(event, item){
 
         $scope.location.address = item.address;
@@ -36,16 +29,19 @@ function GameSettingsCtrl($scope, socket, mapSearchService){
 
     });
 
+    //For startgame button
+    $scope.startGame = function(){
 
+        socket.emit('socket:startgame', {name: $scope.name, location: $scope.location});
 
-
+    };
 
 
     //Listen for the user name and list of other users
     socket.on('socket:gamestarted', function (data) {
 
         $scope.users = data.users;
-
+        $scope.gamesettings.gamestarted = true;
     });
 
 
@@ -109,10 +105,6 @@ function SearchLocationCtrl($scope, mapSearchService){
 
 
 }
-function ContactCtrl($scope){
-
-
-}
 
 
 
@@ -128,7 +120,7 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
     $scope.searchResults = "";
 
-
+    $scope.test = "WHARRRGARBBBBL";
 
 //$scope.nukes = s = nukeService.getNuke
     /*$http.get('nukes/nukes.json').success(function(data) {
@@ -144,6 +136,7 @@ function NavigationCtrl($scope, $location, $http, mapToolService, mapSearchServi
 
     //Search location
     $scope.searchLocation = function(){
+        alert("fda");
         mapSearchService.searchLocation($scope.searchText);
 
         /*var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + formatAddressString($scope.searchText) + '&sensor=false';
